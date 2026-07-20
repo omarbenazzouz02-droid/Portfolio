@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omar Benazzouz — Portfolio Ingénieur Conception Mécanique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD54A; --coral:#FF6F5E; --blue:#5EC9FF; --ink:#20232a;
+    --bg:#FAFAF7; --gray:#6b6f76; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,0.92);
+      backdrop-filter:blur(8px);border-bottom:2px solid var(--ink);}
+  nav .container{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{font-weight:800;font-size:1.05rem;}
+  .navlinks{display:flex;gap:24px;}
+  .navlinks a{font-size:0.9rem;font-weight:600;color:var(--gray);transition:color .2s;}
+  .navlinks a:hover{color:var(--ink);}
+  .nav-lang{font-size:0.85rem;font-weight:700;color:var(--coral);margin-right:14px;}
+  .nav-cta{background:var(--ink);color:var(--yellow);padding:8px 18px;border-radius:999px;
+            font-size:0.85rem;font-weight:700;}
+
+  .hero{min-height:64vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+        text-align:center;padding:60px 24px 40px;background:var(--yellow);position:relative;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;opacity:0.55;}
+  .blob1{width:240px;height:240px;background:var(--coral);top:-70px;left:-70px;}
+  .blob2{width:180px;height:180px;background:var(--blue);bottom:-60px;right:-50px;}
+  .eyebrow{background:var(--ink);color:var(--yellow);padding:6px 16px;border-radius:999px;
+           font-size:0.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+           margin-bottom:18px;position:relative;z-index:2;}
+  .hero h1{font-size:2.9rem;font-weight:800;margin-bottom:4px;position:relative;z-index:2;}
+  .hero .role{font-size:1.3rem;font-weight:600;margin-bottom:10px;position:relative;z-index:2;
+              min-height:1.6em;border-right:3px solid var(--ink);display:inline-block;
+              white-space:nowrap;overflow:hidden;}
+  .hero p.lede{max-width:580px;font-weight:500;margin:14px 0 26px;line-height:1.6;
+               position:relative;z-index:2;color:#3a2e14;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;
+       font-weight:700;transition:transform .15s;}
+  .btn-primary{background:var(--ink);color:var(--yellow);}
+  .btn-primary:hover{transform:scale(1.06) rotate(-1deg);}
+  .btn-outline{background:transparent;border:2px solid var(--ink);color:var(--ink);}
+  .btn-outline:hover{transform:scale(1.06) rotate(1deg);}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;font-size:0.85rem;
+             color:#3a2e14;font-weight:600;position:relative;z-index:2;}
+
+  .stats{display:flex;justify-content:center;gap:48px;padding:36px 24px;flex-wrap:wrap;background:#fff;
+         border-bottom:2px solid var(--ink);}
+  .stat{text-align:center;}
+  .stat .num{font-size:2.3rem;font-weight:800;color:var(--coral);}
+  .stat .lbl{font-size:0.82rem;color:var(--gray);font-weight:600;}
+
+  section{padding:60px 0;}
+  .section-tag{color:var(--coral);font-weight:700;font-size:0.78rem;letter-spacing:.08em;
+               text-transform:uppercase;margin-bottom:8px;}
+  .section-title{font-size:1.7rem;font-weight:800;margin-bottom:14px;}
+  .section-sub{color:var(--gray);max-width:640px;margin-bottom:30px;font-size:0.98rem;}
+
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{margin-bottom:14px;font-size:0.98rem;}
+  .fact-list{display:flex;flex-direction:column;gap:14px;}
+  .fact{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:14px 16px;
+        box-shadow:4px 4px 0 var(--blue);}
+  .fact b{display:block;font-size:0.9rem;}
+  .fact span{color:var(--gray);font-size:0.85rem;}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:800px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:20px;
+              box-shadow:5px 5px 0 var(--ink);transition:transform .2s, box-shadow .2s;
+              display:block;}
+  .skill-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--coral);}
+  .skill-card h4{font-size:1rem;margin-bottom:8px;}
+  .skill-card p{font-size:0.87rem;color:var(--gray);}
+  .skill-link{cursor:pointer;}
+  .skill-cta{display:inline-block;margin-top:10px;font-size:0.82rem;font-weight:700;color:var(--coral);}
+
+  .project{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:26px 28px;
+           margin-bottom:24px;box-shadow:6px 6px 0 var(--blue);transform-style:preserve-3d;
+           transition:transform .15s, box-shadow .2s;}
+  .project:hover{box-shadow:9px 9px 0 var(--coral);}
+  .project-tagrow{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .project-body h3{font-size:1.12rem;}
+  .project-dates{color:var(--coral);font-weight:700;font-size:0.82rem;white-space:nowrap;}
+  .project-org{color:var(--gray);font-size:0.88rem;margin-bottom:14px;font-weight:600;}
+  .project ul{margin:12px 0 16px 0;padding-left:18px;}
+  .project li{font-size:0.92rem;margin-bottom:6px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{background:var(--ink);color:var(--yellow);font-size:0.76rem;font-weight:700;
+       padding:5px 11px;border-radius:999px;}
+
+  .edu-item{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:18px 22px;
+            margin-bottom:14px;box-shadow:4px 4px 0 var(--yellow);}
+  .edu-item h4{font-size:1rem;margin-bottom:4px;}
+  .edu-item .edu-dates{color:var(--coral);font-size:0.82rem;font-weight:700;margin-bottom:6px;}
+  .edu-item p{color:var(--gray);font-size:0.88rem;}
+
+  footer{background:var(--ink);color:#fff;padding:56px 0 26px;}
+  .contact-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+  .contact-grid h2{color:var(--yellow);font-size:1.6rem;margin-bottom:10px;}
+  .contact-grid p{color:#cfd3d8;max-width:420px;font-size:0.95rem;}
+  .contact-links{display:flex;flex-direction:column;gap:12px;}
+  .contact-links a{display:flex;align-items:center;gap:10px;font-size:0.92rem;font-weight:600;}
+  .contact-links a:hover{color:var(--yellow);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;font-size:0.78rem;
+               color:#9aa0a8;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="brand">Omar Benazzouz</div>
+    <div class="navlinks">
+      <a href="#about">Profil</a>
+      <a href="#skills">Compétences</a>
+      <a href="#projects">Projets</a>
+      <a href="#education">Formation</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="playful-en.html" class="nav-lang">🇬🇧 English</a>
+    <a class="nav-cta" href="mailto:omar.benazzouz02@gmail.com">Me contacter</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <span class="eyebrow">Disponible immédiatement — Recherche CDI</span>
+  <h1>Omar Benazzouz</h1>
+  <div class="role" id="typed"></div>
+  <p class="lede">
+    Jeune ingénieur diplômé de Junia H.E.I, spécialisé en conception mécanique (CAO/DAO)
+    et simulation numérique. Expérience en bureau d'études et en contrôle qualité industriel
+    appliqué à l'intelligence artificielle. À la recherche d'un poste en CDI pour contribuer
+    à des projets de conception, d'industrialisation et d'amélioration continue.
+  </p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="mailto:omar.benazzouz02@gmail.com">Me contacter</a>
+    <a class="btn btn-outline" href="#projects">Voir mes projets</a>
+  </div>
+  <div class="hero-meta">
+    <span>📍 Paris, France</span>
+    <span>📞 +33 (0) 6 99 54 86 52</span>
+    <span>✉️ omar.benazzouz02@gmail.com</span>
+    <span>🔗 LinkedIn: BENAZZOUZ Omar</span>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="num" data-target="6">0</div><div class="lbl">Mois chez Renault SOVAB</div></div>
+  <div class="stat"><div class="num" data-target="5">0</div><div class="lbl">Systèmes conçus chez Mediama</div></div>
+  <div class="stat"><div class="num" data-target="3">0</div><div class="lbl">Équipes coordonnées</div></div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <div class="section-tag">À propos</div>
+    <h2 class="section-title">Profil</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Diplômé ingénieur en mécanique (Junia H.E.I, 2025), je me suis formé à la conception
+          mécanique, au calcul de structure et à la simulation numérique, avec une pratique
+          régulière de SolidWorks, CATIA V5 et ANSYS/Abaqus au cours de mes stages et projets
+          académiques.
+        </p>
+        <p>
+          Mes expériences chez Renault SOVAB et MEDIAMA m'ont permis de travailler à la fois
+          sur des sujets de contrôle qualité assisté par intelligence artificielle et sur des
+          projets de conception mécanique de bout en bout — de l'analyse du besoin jusqu'au
+          plan de fabrication.
+        </p>
+        <p>
+          Curieux, rigoureux et à l'aise dans des environnements industriels variés, je recherche
+          aujourd'hui un poste d'Ingénieur Conception Mécanique en CDI où je pourrai continuer à
+          conjuguer conception, simulation et amélioration continue.
+        </p>
+      </div>
+      <div class="fact-list">
+        <div class="fact"><b>🎓 Formation</b><span>Diplôme d'Ingénieur Mécanique — Junia H.E.I, Lille (2025)</span></div>
+        <div class="fact"><b>🛠️ Outils</b><span>SolidWorks, CATIA V5, ANSYS, Abaqus, Altair, AutoCAD</span></div>
+        <div class="fact"><b>🌍 Langues</b><span>Français (courant), Anglais (courant, TOEIC 895), Allemand (A1)</span></div>
+        <div class="fact"><b>🚗 Mobilité</b><span>Permis B — Paris, France</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:#fff;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);">
+  <div class="container">
+    <div class="section-tag">Savoir-faire</div>
+    <h2 class="section-title">Compétences clés</h2>
+    <p class="section-sub">Un socle technique orienté conception mécanique, simulation et gestion de projet industriel.</p>
+    <div class="skills-grid">
+      <a class="skill-card skill-link" href="example-cao-fr.html">
+        <h4>📐 CAO / DAO</h4>
+        <p>SolidWorks, CATIA V5, AutoCAD — conception de pièces, assemblages et plans de fabrication.</p>
+        <span class="skill-cta">Voir un exemple →</span>
+      </a>
+      <div class="skill-card"><h4>📊 Simulation & calcul</h4><p>ANSYS, Abaqus, Altair — calcul de structure et validation numérique.</p></div>
+      <div class="skill-card"><h4>🧪 Choix de matériaux</h4><p>Granta EduPack pour la sélection de matériaux selon les contraintes du projet.</p></div>
+      <div class="skill-card"><h4>🖨️ Fabrication additive</h4><p>Préparation et découpe de fichiers d'impression 3D sous Cura.</p></div>
+      <div class="skill-card"><h4>✅ Qualité & amélioration</h4><p>Analyse de défauts, plans d'action correctifs, standards qualité industriels.</p></div>
+      <a class="skill-card skill-link" href="example-projet-fr.html">
+        <h4>🗂️ Gestion de projet</h4>
+        <p>Cahier des charges, planification, coordination multi-équipes et multi-sites.</p>
+        <span class="skill-cta">Voir un exemple →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">Projets clés</h2>
+    <p class="section-sub">Aperçu de mes principales missions en bureau d'études et en contrôle qualité industriel. Survole une carte : elle bouge avec ta souris.</p>
+
+    <div class="project tilt">
+      <div class="project-tagrow">
+        <h3>Contrôle qualité automatisé assisté par IA</h3>
+        <span class="project-dates">Avril – Octobre 2025</span>
+      </div>
+      <div class="project-org">Renault SOVAB — Ingénieur Qualité (Projet de Fin d'Études)</div>
+      <ul>
+        <li>Piloter le développement d'une solution de contrôle qualité automatisée basée sur l'IA, en lien avec les équipes production et informatique.</li>
+        <li>Analyser chaque semaine les défauts détectés (~25 sessions sur la mission) pour fiabiliser la détection et réduire les faux positifs.</li>
+        <li>Élaborer et mettre en œuvre plus de 10 plans d'action correctifs conformes aux standards qualité Renault.</li>
+        <li>Coordonner 3 équipes transverses (informatique, production, qualité) et préparer le déploiement multi-sites.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Contrôle qualité</span>
+        <span class="tag">Intelligence artificielle</span>
+        <span class="tag">Amélioration continue</span>
+        <span class="tag">Déploiement multi-sites</span>
+      </div>
+    </div>
+
+    <div class="project tilt">
+      <div class="project-tagrow">
+        <h3>Conception de systèmes de fixation pour PLV</h3>
+        <span class="project-dates">Avril – Août 2024</span>
+      </div>
+      <div class="project-org">MEDIAMA — Chargé de Conception et d'Amélioration des PLV (Stage)</div>
+      <ul>
+        <li>Concevoir et améliorer plus de 5 systèmes de fixation mécanique sous SolidWorks pour des supports de Publicité sur Lieu de Vente.</li>
+        <li>Réaliser une dizaine de plans de fabrication et d'assemblage, en garantissant leur conformité industrielle.</li>
+        <li>Coordonner les fournisseurs, sous-traitants et l'équipe atelier pour fiabiliser production et délais.</li>
+        <li>Analyser les retours clients et terrain pour identifier des axes d'amélioration produit.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">SolidWorks</span>
+        <span class="tag">Conception mécanique</span>
+        <span class="tag">Plans de fabrication</span>
+        <span class="tag">Relation fournisseurs</span>
+      </div>
+    </div>
+
+    <div class="project tilt">
+      <div class="project-tagrow">
+        <h3>Solution robotisée de pulvérisation — Projet YES</h3>
+        <span class="project-dates">Projet académique — 4 mois</span>
+      </div>
+      <div class="project-org">Junia H.E.I — Projet d'équipe (cycle ingénieur)</div>
+      <ul>
+        <li>Réalisation d'un état de l'art de plus de 5 solutions existantes de pulvérisation robotisée.</li>
+        <li>Gestion de projet et suivi du développement de la solution retenue sur 4 mois.</li>
+        <li>Conception et prototypage du système robotisé permettant de pulvériser des produits de nettoyage.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Robotique</span>
+        <span class="tag">Prototypage</span>
+        <span class="tag">Gestion de projet</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education" style="background:#fff;border-top:2px solid var(--ink);">
+  <div class="container">
+    <div class="section-tag">Parcours</div>
+    <h2 class="section-title">Formation</h2>
+    <div class="edu-item">
+      <h4>Diplôme d'Ingénieur, spécialité Mécanique — Junia H.E.I, Lille</h4>
+      <div class="edu-dates">Septembre 2023 – Juin 2025</div>
+      <p>Cours clés : calcul de structure, CAO, contrôle non destructif (CND), maintenance industrielle, choix de matériaux.</p>
+    </div>
+    <div class="edu-item">
+      <h4>Classes Préparatoires PCSI-PC — Junia</h4>
+      <p>Formation scientifique généraliste préparant au cycle ingénieur.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <h2>Discutons de votre prochain projet</h2>
+        <p>Disponible immédiatement pour un poste d'Ingénieur Conception Mécanique en CDI.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:omar.benazzouz02@gmail.com">✉️ omar.benazzouz02@gmail.com</a>
+        <a href="tel:+33699548652">📞 +33 (0) 6 99 54 86 52</a>
+        <a href="#">🔗 LinkedIn: BENAZZOUZ Omar</a>
+        <a href="#">📍 Paris, France</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Omar Benazzouz</span>
+      <span>Ingénieur Conception Mécanique</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const text = "Ingénieur Conception Mécanique";
+  const el = document.getElementById('typed');
+  let i = 0;
+  function type(){
+    if(i <= text.length){ el.textContent = text.slice(0,i); i++; setTimeout(type, 50); }
+    else { el.style.borderRight = 'none'; }
+  }
+  type();
+
+  document.querySelectorAll('.stat .num').forEach(function(el){
+    const target = +el.dataset.target;
+    let cur = 0;
+    const step = Math.max(1, target/30);
+    const t = setInterval(function(){
+      cur += step;
+      if(cur >= target){ cur = target; clearInterval(t); }
+      el.textContent = Math.round(cur);
+    }, 40);
+  });
+
+  document.querySelectorAll('.project.tilt').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = 'perspective(700px) rotateY(' + (x*6) + 'deg) rotateX(' + (-y*6) + 'deg)';
+    });
+    card.addEventListener('mouseleave', function(){ card.style.transform = 'none'; });
+  });
+</script>
+
+</body>
+</html>

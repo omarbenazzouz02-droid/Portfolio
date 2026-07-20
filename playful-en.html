@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omar Benazzouz — Mechanical Design Engineer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFD54A; --coral:#FF6F5E; --blue:#5EC9FF; --ink:#20232a;
+    --bg:#FAFAF7; --gray:#6b6f76; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1040px;margin:0 auto;padding:0 24px;}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,247,0.92);
+      backdrop-filter:blur(8px);border-bottom:2px solid var(--ink);}
+  nav .container{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{font-weight:800;font-size:1.05rem;}
+  .navlinks{display:flex;gap:24px;}
+  .navlinks a{font-size:0.9rem;font-weight:600;color:var(--gray);transition:color .2s;}
+  .navlinks a:hover{color:var(--ink);}
+  .nav-lang{font-size:0.85rem;font-weight:700;color:var(--coral);margin-right:14px;}
+  .nav-cta{background:var(--ink);color:var(--yellow);padding:8px 18px;border-radius:999px;
+            font-size:0.85rem;font-weight:700;}
+
+  .hero{min-height:64vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+        text-align:center;padding:60px 24px 40px;background:var(--yellow);position:relative;overflow:hidden;}
+  .blob{position:absolute;border-radius:50%;opacity:0.55;}
+  .blob1{width:240px;height:240px;background:var(--coral);top:-70px;left:-70px;}
+  .blob2{width:180px;height:180px;background:var(--blue);bottom:-60px;right:-50px;}
+  .eyebrow{background:var(--ink);color:var(--yellow);padding:6px 16px;border-radius:999px;
+           font-size:0.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;
+           margin-bottom:18px;position:relative;z-index:2;}
+  .hero h1{font-size:2.9rem;font-weight:800;margin-bottom:4px;position:relative;z-index:2;}
+  .hero .role{font-size:1.3rem;font-weight:600;margin-bottom:10px;position:relative;z-index:2;
+              min-height:1.6em;border-right:3px solid var(--ink);display:inline-block;
+              white-space:nowrap;overflow:hidden;}
+  .hero p.lede{max-width:580px;font-weight:500;margin:14px 0 26px;line-height:1.6;
+               position:relative;z-index:2;color:#3a2e14;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;
+       font-weight:700;transition:transform .15s;}
+  .btn-primary{background:var(--ink);color:var(--yellow);}
+  .btn-primary:hover{transform:scale(1.06) rotate(-1deg);}
+  .btn-outline{background:transparent;border:2px solid var(--ink);color:var(--ink);}
+  .btn-outline:hover{transform:scale(1.06) rotate(1deg);}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;font-size:0.85rem;
+             color:#3a2e14;font-weight:600;position:relative;z-index:2;}
+
+  .stats{display:flex;justify-content:center;gap:48px;padding:36px 24px;flex-wrap:wrap;background:#fff;
+         border-bottom:2px solid var(--ink);}
+  .stat{text-align:center;}
+  .stat .num{font-size:2.3rem;font-weight:800;color:var(--coral);}
+  .stat .lbl{font-size:0.82rem;color:var(--gray);font-weight:600;}
+
+  section{padding:60px 0;}
+  .section-tag{color:var(--coral);font-weight:700;font-size:0.78rem;letter-spacing:.08em;
+               text-transform:uppercase;margin-bottom:8px;}
+  .section-title{font-size:1.7rem;font-weight:800;margin-bottom:14px;}
+  .section-sub{color:var(--gray);max-width:640px;margin-bottom:30px;font-size:0.98rem;}
+
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{margin-bottom:14px;font-size:0.98rem;}
+  .fact-list{display:flex;flex-direction:column;gap:14px;}
+  .fact{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:14px 16px;
+        box-shadow:4px 4px 0 var(--blue);}
+  .fact b{display:block;font-size:0.9rem;}
+  .fact span{color:var(--gray);font-size:0.85rem;}
+
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:800px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:20px;
+              box-shadow:5px 5px 0 var(--ink);transition:transform .2s, box-shadow .2s;
+              display:block;}
+  .skill-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--coral);}
+  .skill-card h4{font-size:1rem;margin-bottom:8px;}
+  .skill-card p{font-size:0.87rem;color:var(--gray);}
+  .skill-link{cursor:pointer;}
+  .skill-cta{display:inline-block;margin-top:10px;font-size:0.82rem;font-weight:700;color:var(--coral);}
+
+  .project{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:26px 28px;
+           margin-bottom:24px;box-shadow:6px 6px 0 var(--blue);transform-style:preserve-3d;
+           transition:transform .15s, box-shadow .2s;}
+  .project:hover{box-shadow:9px 9px 0 var(--coral);}
+  .project-tagrow{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .project-body h3{font-size:1.12rem;}
+  .project-dates{color:var(--coral);font-weight:700;font-size:0.82rem;white-space:nowrap;}
+  .project-org{color:var(--gray);font-size:0.88rem;margin-bottom:14px;font-weight:600;}
+  .project ul{margin:12px 0 16px 0;padding-left:18px;}
+  .project li{font-size:0.92rem;margin-bottom:6px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{background:var(--ink);color:var(--yellow);font-size:0.76rem;font-weight:700;
+       padding:5px 11px;border-radius:999px;}
+
+  .edu-item{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:18px 22px;
+            margin-bottom:14px;box-shadow:4px 4px 0 var(--yellow);}
+  .edu-item h4{font-size:1rem;margin-bottom:4px;}
+  .edu-item .edu-dates{color:var(--coral);font-size:0.82rem;font-weight:700;margin-bottom:6px;}
+  .edu-item p{color:var(--gray);font-size:0.88rem;}
+
+  footer{background:var(--ink);color:#fff;padding:56px 0 26px;}
+  .contact-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;margin-bottom:30px;}
+  .contact-grid h2{color:var(--yellow);font-size:1.6rem;margin-bottom:10px;}
+  .contact-grid p{color:#cfd3d8;max-width:420px;font-size:0.95rem;}
+  .contact-links{display:flex;flex-direction:column;gap:12px;}
+  .contact-links a{display:flex;align-items:center;gap:10px;font-size:0.92rem;font-weight:600;}
+  .contact-links a:hover{color:var(--yellow);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.15);padding-top:18px;font-size:0.78rem;
+               color:#9aa0a8;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="brand">Omar Benazzouz</div>
+    <div class="navlinks">
+      <a href="#about">Profile</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="playful-fr.html" class="nav-lang">🇫🇷 Français</a>
+    <a class="nav-cta" href="mailto:omar.benazzouz02@gmail.com">Contact me</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <span class="eyebrow">Available immediately — Seeking full-time position</span>
+  <h1>Omar Benazzouz</h1>
+  <div class="role" id="typed"></div>
+  <p class="lede">
+    Recent mechanical engineering graduate from Junia H.E.I, specialized in mechanical design
+    (CAD) and numerical simulation. Experience in design offices and industrial quality control
+    powered by artificial intelligence. Looking for a full-time position to contribute to
+    design, industrialization and continuous improvement projects.
+  </p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="mailto:omar.benazzouz02@gmail.com">Contact me</a>
+    <a class="btn btn-outline" href="#projects">View my projects</a>
+  </div>
+  <div class="hero-meta">
+    <span>📍 Paris, France</span>
+    <span>📞 +33 (0) 6 99 54 86 52</span>
+    <span>✉️ omar.benazzouz02@gmail.com</span>
+    <span>🔗 LinkedIn: BENAZZOUZ Omar</span>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="num" data-target="6">0</div><div class="lbl">Months at Renault SOVAB</div></div>
+  <div class="stat"><div class="num" data-target="5">0</div><div class="lbl">Systems designed at Mediama</div></div>
+  <div class="stat"><div class="num" data-target="3">0</div><div class="lbl">Teams coordinated</div></div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <div class="section-tag">About</div>
+    <h2 class="section-title">Profile</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Mechanical engineering graduate (Junia H.E.I, 2025), trained in mechanical design,
+          structural analysis and numerical simulation, with hands-on experience in SolidWorks,
+          CATIA V5 and ANSYS/Abaqus throughout my internships and academic projects.
+        </p>
+        <p>
+          My experience at Renault SOVAB and MEDIAMA allowed me to work both on AI-assisted
+          quality control topics and on end-to-end mechanical design projects — from needs
+          analysis to manufacturing drawings.
+        </p>
+        <p>
+          Curious, rigorous and comfortable in varied industrial environments, I am now looking
+          for a full-time Mechanical Design Engineer position where I can keep combining design,
+          simulation and continuous improvement.
+        </p>
+      </div>
+      <div class="fact-list">
+        <div class="fact"><b>🎓 Education</b><span>Engineering Degree, Mechanical Engineering — Junia H.E.I, Lille (2025)</span></div>
+        <div class="fact"><b>🛠️ Tools</b><span>SolidWorks, CATIA V5, ANSYS, Abaqus, Altair, AutoCAD</span></div>
+        <div class="fact"><b>🌍 Languages</b><span>French (native), English (fluent, TOEIC 895), German (A1)</span></div>
+        <div class="fact"><b>🚗 Mobility</b><span>Driver's license (Permis B) — Paris, France</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:#fff;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);">
+  <div class="container">
+    <div class="section-tag">Skills</div>
+    <h2 class="section-title">Key skills</h2>
+    <p class="section-sub">A technical foundation focused on mechanical design, simulation and industrial project management.</p>
+    <div class="skills-grid">
+      <a class="skill-card skill-link" href="example-cao-en.html">
+        <h4>📐 CAD / Design</h4>
+        <p>SolidWorks, CATIA V5, AutoCAD — part, assembly and manufacturing drawing design.</p>
+        <span class="skill-cta">See an example →</span>
+      </a>
+      <div class="skill-card"><h4>📊 Simulation & analysis</h4><p>ANSYS, Abaqus, Altair — structural calculation and numerical validation.</p></div>
+      <div class="skill-card"><h4>🧪 Materials selection</h4><p>Granta EduPack for materials selection based on project constraints.</p></div>
+      <div class="skill-card"><h4>🖨️ Additive manufacturing</h4><p>3D printing file preparation and slicing with Cura.</p></div>
+      <div class="skill-card"><h4>✅ Quality & improvement</h4><p>Defect analysis, corrective action plans, industrial quality standards.</p></div>
+      <div class="skill-card"><h4>🗂️ Project management</h4><p>Requirements specification, planning, multi-team and multi-site coordination.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">Key projects</h2>
+    <p class="section-sub">Overview of my main design office and industrial quality control assignments. Hover a card — it moves with your cursor.</p>
+
+    <div class="project tilt">
+      <div class="project-tagrow">
+        <h3>AI-assisted automated quality control</h3>
+        <span class="project-dates">April – October 2025</span>
+      </div>
+      <div class="project-org">Renault SOVAB — Quality Engineer (Final-year Project)</div>
+      <ul>
+        <li>Lead the development of an AI-based automated quality control solution, working closely with production and IT teams.</li>
+        <li>Analyze detected defects weekly (~25 review sessions over the assignment) to improve detection reliability and reduce false positives.</li>
+        <li>Develop and implement over 10 corrective action plans in line with Renault quality standards.</li>
+        <li>Coordinate 3 cross-functional teams (IT, production, quality) and prepare the multi-site rollout.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Quality control</span>
+        <span class="tag">Artificial intelligence</span>
+        <span class="tag">Continuous improvement</span>
+        <span class="tag">Multi-site rollout</span>
+      </div>
+    </div>
+
+    <div class="project tilt">
+      <div class="project-tagrow">
+        <h3>Design of fastening systems for point-of-sale displays</h3>
+        <span class="project-dates">April – August 2024</span>
+      </div>
+      <div class="project-org">MEDIAMA — Design & Improvement Engineer, POS Displays (Internship)</div>
+      <ul>
+        <li>Design and improve more than 5 mechanical fastening systems in SolidWorks for point-of-sale display units.</li>
+        <li>Produce around ten manufacturing and assembly drawings, ensuring industrial compliance.</li>
+        <li>Coordinate suppliers, subcontractors and the workshop team to ensure reliable production and delivery timelines.</li>
+        <li>Analyze customer and field feedback to identify product improvement areas.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">SolidWorks</span>
+        <span class="tag">Mechanical design</span>
+        <span class="tag">Manufacturing drawings</span>
+        <span class="tag">Supplier relations</span>
+      </div>
+    </div>
+
+    <div class="project tilt">
+      <div class="project-tagrow">
+        <h3>Robotic spraying solution — Project YES</h3>
+        <span class="project-dates">Academic project — 4 months</span>
+      </div>
+      <div class="project-org">Junia H.E.I — Team project (engineering program)</div>
+      <ul>
+        <li>Conducted a state-of-the-art review of more than 5 existing robotic spraying solutions.</li>
+        <li>Managed the project and tracked development of the selected solution over 4 months.</li>
+        <li>Designed and prototyped the robotic system for spraying cleaning products.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Robotics</span>
+        <span class="tag">Prototyping</span>
+        <span class="tag">Project management</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education" style="background:#fff;border-top:2px solid var(--ink);">
+  <div class="container">
+    <div class="section-tag">Background</div>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-item">
+      <h4>Engineering Degree, Mechanical Engineering — Junia H.E.I, Lille</h4>
+      <div class="edu-dates">September 2023 – June 2025</div>
+      <p>Key courses: structural analysis, CAD, non-destructive testing (NDT), industrial maintenance, materials selection.</p>
+    </div>
+    <div class="edu-item">
+      <h4>Preparatory Classes PCSI-PC — Junia</h4>
+      <p>General scientific program preparing for the engineering degree cycle.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <h2>Let's discuss your next project</h2>
+        <p>Available immediately for a full-time Mechanical Design Engineer position.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:omar.benazzouz02@gmail.com">✉️ omar.benazzouz02@gmail.com</a>
+        <a href="tel:+33699548652">📞 +33 (0) 6 99 54 86 52</a>
+        <a href="#">🔗 LinkedIn: BENAZZOUZ Omar</a>
+        <a href="#">📍 Paris, France</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Omar Benazzouz</span>
+      <span>Mechanical Design Engineer</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const text = "Mechanical Design Engineer";
+  const el = document.getElementById('typed');
+  let i = 0;
+  function type(){
+    if(i <= text.length){ el.textContent = text.slice(0,i); i++; setTimeout(type, 50); }
+    else { el.style.borderRight = 'none'; }
+  }
+  type();
+
+  document.querySelectorAll('.stat .num').forEach(function(el){
+    const target = +el.dataset.target;
+    let cur = 0;
+    const step = Math.max(1, target/30);
+    const t = setInterval(function(){
+      cur += step;
+      if(cur >= target){ cur = target; clearInterval(t); }
+      el.textContent = Math.round(cur);
+    }, 40);
+  });
+
+  document.querySelectorAll('.project.tilt').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left)/r.width - 0.5;
+      const y = (e.clientY - r.top)/r.height - 0.5;
+      card.style.transform = 'perspective(700px) rotateY(' + (x*6) + 'deg) rotateX(' + (-y*6) + 'deg)';
+    });
+    card.addEventListener('mouseleave', function(){ card.style.transform = 'none'; });
+  });
+</script>
+
+</body>
+</html>

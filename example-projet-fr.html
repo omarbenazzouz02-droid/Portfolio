@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemple Gestion de Projet — Omar Benazzouz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--yellow:#FFD54A;--coral:#FF6F5E;--blue:#5EC9FF;--ink:#20232a;--bg:#FAFAF7;--gray:#6b6f76;
+        --navy:#1F3B54; --green:#3BA776;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;}
+  a{color:inherit;}
+  .container{max-width:960px;margin:0 auto;padding:40px 24px 80px;}
+  .back{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--coral);
+        text-decoration:none;margin-bottom:20px;font-size:0.9rem;}
+  .eyebrow{color:var(--coral);font-weight:700;font-size:0.78rem;letter-spacing:.08em;
+           text-transform:uppercase;margin-bottom:8px;}
+  h1{font-size:1.9rem;font-weight:800;margin-bottom:14px;}
+  h2{font-size:1.3rem;font-weight:800;margin:36px 0 6px;}
+  .lead{color:var(--gray);max-width:680px;margin-bottom:10px;}
+  .note{background:#FFF6E5;border:2px solid var(--ink);border-radius:12px;padding:14px 18px;
+        font-size:0.87rem;margin:18px 0 8px;box-shadow:4px 4px 0 var(--yellow);}
+
+  /* phase steps */
+  .phases{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px;}
+  @media(max-width:800px){.phases{grid-template-columns:repeat(2,1fr);}}
+  .phase-card{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:16px;
+              box-shadow:4px 4px 0 var(--blue);}
+  .phase-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+             background:var(--ink);color:var(--yellow);border-radius:50%;font-weight:800;
+             font-size:0.85rem;margin-bottom:8px;}
+  .phase-card h4{font-size:0.95rem;margin-bottom:8px;}
+  .phase-card ul{padding-left:16px;font-size:0.82rem;color:var(--gray);}
+  .phase-card li{margin-bottom:3px;}
+
+  /* gantt */
+  .gantt{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:20px;
+         box-shadow:5px 5px 0 var(--coral);margin-top:16px;overflow-x:auto;}
+  .gantt-months{display:flex;font-size:0.78rem;font-weight:700;color:var(--gray);margin-bottom:8px;
+                min-width:600px;}
+  .gantt-months span{flex:1;text-align:left;border-left:1px solid #e2e2e2;padding-left:6px;}
+  .gantt-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:600px;}
+  .gantt-label{width:190px;font-size:0.8rem;font-weight:600;flex-shrink:0;}
+  .gantt-track{position:relative;flex:1;height:20px;background:#f1f1ee;border-radius:6px;}
+  .gantt-bar{position:absolute;top:0;height:100%;border-radius:6px;}
+
+  /* business model canvas */
+  .bmc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px;}
+  @media(max-width:800px){.bmc{grid-template-columns:repeat(2,1fr);}}
+  .bmc-cell{border-radius:10px;padding:12px;font-size:0.78rem;color:#fff;}
+  .bmc-cell h5{font-size:0.78rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em;}
+  .bmc-cell ul{padding-left:14px;}
+  .bmc-cell li{margin-bottom:2px;}
+  .bmc-dark{background:var(--navy);}
+  .bmc-blue{background:var(--blue);color:var(--ink);}
+  .bmc-blue h5{color:var(--navy);}
+  .bmc-wide{grid-column:span 5;}
+  @media(max-width:800px){.bmc-wide{grid-column:span 2;}}
+  .bmc-bottom{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+  .bmc-gray{background:#eceae4;color:var(--ink);border-radius:10px;padding:12px;font-size:0.78rem;}
+  .bmc-gray h5{font-size:0.78rem;margin-bottom:6px;color:var(--navy);}
+  .bmc-gray ul{padding-left:14px;}
+
+  /* weekly plan table */
+  table.plan{width:100%;border-collapse:collapse;margin-top:16px;font-size:0.83rem;background:#fff;
+             border:2px solid var(--ink);border-radius:10px;overflow:hidden;}
+  table.plan th{background:var(--ink);color:var(--yellow);padding:9px 10px;text-align:left;}
+  table.plan td{padding:8px 10px;border-top:1px solid #eee;vertical-align:top;}
+  .status{display:inline-block;padding:3px 9px;border-radius:999px;font-size:0.74rem;font-weight:700;}
+  .status.done{background:#E1F5EE;color:#0F6E56;}
+  .status.progress{background:#FAEEDA;color:#854F0B;}
+  .status.todo{background:#FAECE7;color:#993C1D;}
+  .me{background:var(--yellow);padding:1px 5px;border-radius:4px;font-weight:700;}
+
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px;}
+  .tag{background:var(--ink);color:var(--yellow);font-size:0.76rem;font-weight:700;
+       padding:5px 11px;border-radius:999px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="playful-fr.html">← Retour au portfolio</a>
+  <div class="eyebrow">Exemple — Compétence Gestion de projet</div>
+  <h1>Pilotage du Projet YES — solution robotisée « CAP VERT »</h1>
+  <p class="lead">
+    Projet d'équipe mené sur 4 mois à Junia H.E.I (14 octobre 2024 – 17 janvier 2025), avec Ethan,
+    Julie, Annabelle et Mattéo. Objectif : concevoir une solution robotisée de pulvérisation de
+    produits de nettoyage. Voici les outils de pilotage que j'ai utilisés ou co-construits avec
+    l'équipe tout au long du projet.
+  </p>
+
+  <h2>Les 4 grandes phases du projet</h2>
+  <div class="phases">
+    <div class="phase-card">
+      <div class="phase-num">1</div>
+      <h4>Découverte du projet</h4>
+      <ul>
+        <li>Rencontre d'équipe</li>
+        <li>Fiche de lancement</li>
+        <li>Charte d'équipe</li>
+        <li>Cartographie des acteurs</li>
+        <li>Préparation du 1er RDV client</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">2</div>
+      <h4>Organisation & étude</h4>
+      <ul>
+        <li>Bête à corne, WBS</li>
+        <li>Planning GANTT prévisionnel</li>
+        <li>Plan d'action hebdomadaire</li>
+        <li>État de l'art, diagramme pieuvre, FAST</li>
+        <li>Business model</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">3</div>
+      <h4>Conception du projet</h4>
+      <ul>
+        <li>Cahier des charges</li>
+        <li>Rapport & point de mi-parcours</li>
+        <li>Maquettes / prototypes</li>
+        <li>Production du livrable vidéo</li>
+        <li>FORUM des projets YES</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">4</div>
+      <h4>Réalisation & finalisation</h4>
+      <ul>
+        <li>Finalisation du livrable</li>
+        <li>Soutenance blanche</li>
+        <li>Soutenance & évaluation finale</li>
+        <li>Rencontre débrief</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Planning GANTT (vue simplifiée)</h2>
+  <div class="gantt">
+    <div class="gantt-months">
+      <span style="flex:1.18">Octobre</span>
+      <span style="flex:2.11">Novembre</span>
+      <span style="flex:2.18">Décembre</span>
+      <span style="flex:1.19">Janvier</span>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">1. Découverte du projet</div>
+      <div class="gantt-track"><div class="gantt-bar" style="left:0%;width:4.2%;background:var(--coral);"></div></div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">2. Organisation & étude</div>
+      <div class="gantt-track"><div class="gantt-bar" style="left:0%;width:16.8%;background:var(--blue);"></div></div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">3. Conception du projet</div>
+      <div class="gantt-track"><div class="gantt-bar" style="left:8.4%;width:62.1%;background:var(--yellow);"></div></div>
+    </div>
+    <div class="gantt-row">
+      <div class="gantt-label">4. Réalisation & finalisation</div>
+      <div class="gantt-track"><div class="gantt-bar" style="left:88.4%;width:11.6%;background:var(--green);"></div></div>
+    </div>
+  </div>
+
+  <h2>Business Model — « CAP VERT »</h2>
+  <p class="lead">
+    Modélisation du business model de la solution imaginée pour le client, co-réalisée avec Annabelle.
+  </p>
+  <div class="bmc">
+    <div class="bmc-cell bmc-dark">
+      <h5>Partenaires clés</h5>
+      <ul><li>Fournisseur d'acides</li><li>Fabricants des pulvérisateurs</li><li>Partenaires locaux</li></ul>
+    </div>
+    <div class="bmc-cell bmc-dark">
+      <h5>Activités clés</h5>
+      <ul><li>Nettoyage stations-service</li><li>Nettoyage panneaux solaires</li><li>Nettoyage grandes surfaces / lieux publics</li></ul>
+    </div>
+    <div class="bmc-cell bmc-dark">
+      <h5>Proposition de valeur</h5>
+      <ul><li>Nettoyage efficace</li><li>Sécurité des opérateurs</li><li>Réduction des déchets</li><li>Ergonomique</li></ul>
+    </div>
+    <div class="bmc-cell bmc-blue">
+      <h5>Relations clients</h5>
+      <ul><li>Relation personnalisée selon les besoins de chaque client</li></ul>
+    </div>
+    <div class="bmc-cell bmc-dark">
+      <h5>Segments de marché</h5>
+      <ul><li>Stations-service</li><li>Centres commerciaux</li><li>Hôpitaux</li><li>Gares et aéroports</li></ul>
+    </div>
+    <div class="bmc-cell bmc-blue" style="grid-column:2;">
+      <h5>Ressources clés</h5>
+      <ul><li>Opérateurs</li><li>Équipements</li><li>Produits de nettoyage</li><li>Véhicule de transport</li></ul>
+    </div>
+    <div class="bmc-cell bmc-blue" style="grid-column:4;">
+      <h5>Canaux</h5>
+      <ul><li>Site internet</li><li>Réseaux sociaux</li></ul>
+    </div>
+  </div>
+  <div class="bmc-bottom">
+    <div class="bmc-gray">
+      <h5>Structure des coûts</h5>
+      <ul><li>Personnel qualifié</li><li>Produits écologiques</li><li>Acquisition/entretien des équipements</li></ul>
+    </div>
+    <div class="bmc-gray">
+      <h5>Flux de revenu</h5>
+      <ul><li>Contrats de nettoyage</li><li>Paiement pour services spécifiques</li></ul>
+    </div>
+  </div>
+
+  <h2>Plan d'action hebdomadaire (extrait)</h2>
+  <p class="lead">Suivi type Kanban des tâches réparties chaque semaine entre les membres de l'équipe.</p>
+  <table class="plan">
+    <tr><th>Jour</th><th>Tâche</th><th>Réalisé par</th><th>État</th></tr>
+    <tr><td>Mar. 15/10</td><td>Cartographie des acteurs</td><td><span class="me">Omar</span></td><td><span class="status done">Fait</span></td></tr>
+    <tr><td>Lun. 28/10</td><td>Business model de l'entreprise</td><td>Annabelle, <span class="me">Omar</span></td><td><span class="status done">Fait</span></td></tr>
+    <tr><td>Mar. 05/11</td><td>État de l'art robot & brosse 3-en-1</td><td>Julie, <span class="me">Omar</span>, Annabelle</td><td><span class="status done">Fait</span></td></tr>
+    <tr><td>Lun. 09/12</td><td>Modélisation chariot V1</td><td><span class="me">Omar</span>, Annabelle</td><td><span class="status done">Fait</span></td></tr>
+    <tr><td>Ven. 13/12</td><td>Modélisation et dimensionnement du pulvérisateur</td><td><span class="me">Omar</span>, Annabelle</td><td><span class="status done">Fait</span></td></tr>
+    <tr><td>Mar. 07/01</td><td>Assemblage total et mise en situation</td><td><span class="me">Omar</span></td><td><span class="status progress">En cours</span></td></tr>
+  </table>
+
+  <div class="note">
+    💡 Le plan complet compte plus de 70 tâches réparties sur 4 mois ; seules quelques lignes
+    représentatives (dont mes contributions directes) sont présentées ici.
+  </div>
+
+  <div class="tags">
+    <span class="tag">Planning GANTT</span>
+    <span class="tag">Business Model Canvas</span>
+    <span class="tag">Suivi Kanban</span>
+    <span class="tag">Travail d'équipe</span>
+  </div>
+</div>
+</body>
+</html>

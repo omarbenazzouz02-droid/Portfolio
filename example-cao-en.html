@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAD Example — Omar Benazzouz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--yellow:#FFD54A;--coral:#FF6F5E;--blue:#5EC9FF;--ink:#20232a;--bg:#FAFAF7;--gray:#6b6f76;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+  h1,h2{font-family:'Poppins',sans-serif;}
+  a{color:inherit;}
+  .container{max-width:900px;margin:0 auto;padding:40px 24px 70px;}
+  .back{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--coral);
+        text-decoration:none;margin-bottom:20px;font-size:0.9rem;}
+  .eyebrow{color:var(--coral);font-weight:700;font-size:0.78rem;letter-spacing:.08em;
+           text-transform:uppercase;margin-bottom:8px;}
+  h1{font-size:1.9rem;font-weight:800;margin-bottom:14px;}
+  .lead{color:var(--gray);max-width:640px;margin-bottom:22px;}
+  .note{background:#FFF6E5;border:2px solid var(--ink);border-radius:12px;padding:16px 20px;
+        font-size:0.9rem;margin-bottom:28px;box-shadow:4px 4px 0 var(--yellow);}
+  .drawing-frame{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:16px;
+                  box-shadow:6px 6px 0 var(--blue);margin-bottom:26px;}
+  .drawing-frame img{width:100%;height:auto;display:block;border-radius:4px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+  .tag{background:var(--ink);color:var(--yellow);font-size:0.76rem;font-weight:700;
+       padding:5px 11px;border-radius:999px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="playful-en.html">← Back to portfolio</a>
+  <div class="eyebrow">Example — CAD skill</div>
+  <h1>Workshop layout — illustrative example</h1>
+  <p class="lead">
+    This diagram illustrates the type of design-office work I did during my internship at MEDIAMA:
+    defining the layout of a new machine within a workshop (circulation zones, workstations,
+    logistics access, ventilation) and producing a dimensioned drawing usable by technical teams.
+  </p>
+  <div class="note">
+    ⚠️ For confidentiality reasons, this diagram is a free reconstruction: the dimensions, layout
+    and content are fictional and do not reproduce any real client document.
+  </div>
+  <div class="drawing-frame">
+    <img src="drawing_en.svg" alt="Workshop layout drawing — illustrative example with title block">
+  </div>
+  <div class="tags">
+    <span class="tag">Workshop layout</span>
+    <span class="tag">Dimensioned drawing</span>
+    <span class="tag">Design office</span>
+  </div>
+</div>
+</body>
+</html>
